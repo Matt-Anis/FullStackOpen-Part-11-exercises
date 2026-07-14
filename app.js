@@ -1,13 +1,16 @@
 const express = require('express')
 const app = express()
 
-// get the port from env variable
 const PORT = process.env.PORT || 5001
 
 app.use(express.static('dist'))
 
 app.get('/version', (req, res) => {
-  res.send('1') // change this string to ensure a new version deployed
+  res.send('2')
+})
+
+app.get('/health', (req, res) => {
+  res.send('ok')
 })
 
 const start = async () => {
