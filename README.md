@@ -1,5 +1,7 @@
 # Full Stack open CI/CD
 
+[Live app deployed link](https://fullstackopen-part-11-exercises.onrender.com/)
+
 This repository is used for the CI/CD module of the Full Stack Open course
 
 ## Commands
