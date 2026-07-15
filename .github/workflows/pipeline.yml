@@ -11,7 +11,7 @@ on:
       - synchronize
 
 jobs:
-  simple_deployment_pipeline:
+  Build_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -37,12 +37,15 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Trigger deployment
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && !contains(join(github.event.commits.*.message), '#skip') }}
+  Deploy:
+    needs: [build_and_test]
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && !contains(join(github.event.commits.*.message), '#skip') }}
         run: curl --max-time 10 ${{ secrets.RENDER_DEPLOY_HOOK }}
 
-  tag_release:
-    needs: [simple_deployment_pipeline]
+  Tag_release:
+    needs: [Deploy]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -57,7 +60,7 @@ jobs:
           DEFAULT_BUMP: patch
 
   discord_notification:
-    needs: [simple_deployment_pipeline, tag_release]
+    needs: [Deploy]
     runs-on: ubuntu-latest
     steps:
       - uses: sarisia/actions-status-discord@v1
