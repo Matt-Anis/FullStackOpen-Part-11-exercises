@@ -7,6 +7,6 @@ on:
 
 jobs:
   health_check:
-    runs-on: ubunut-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "hello!"
