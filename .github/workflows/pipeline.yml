@@ -5,7 +5,7 @@ on:
     branches:
       - master
   pull_request:
-    branches: [main]
+    branches: [master]
     types:
       - opened
       - synchronize
@@ -38,4 +38,5 @@ jobs:
           retention-days: 30
 
       - name: Trigger deployment
+        if: ${{ github.event_name == 'push' }}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
