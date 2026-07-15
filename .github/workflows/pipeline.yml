@@ -39,4 +39,4 @@ jobs:
 
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
-        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: curl --max-time 10 ${{ secrets.RENDER_DEPLOY_HOOK }}
