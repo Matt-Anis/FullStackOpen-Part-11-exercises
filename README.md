@@ -1,6 +1,7 @@
 # Full Stack open CI/CD
 
-[Live app deployed link](https://fullstackopen-part-11-exercises.onrender.com/)
+- [pokedex live app](https://fullstackopen-part-11-exercises.onrender.com/)
+- [exercise 21, 22 repository](https://github.com/Matt-Anis/FullStackOpen-Part-05-exercises/)
 
 This repository is used for the CI/CD module of the Full Stack Open course
 
